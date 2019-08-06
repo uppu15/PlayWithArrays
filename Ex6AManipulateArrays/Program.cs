@@ -18,10 +18,12 @@ namespace Ex6AManipulateArrays
             Console.WriteLine($"The average of input array is: {MeanArray(input)}");
 
 
-            Console.Write($"Reversed version of input array is: ");
+            Console.Write("Reversed version of input array is: ");
             ReverseArray(input);
 
             Console.WriteLine();
+
+            Console.Write("Sorted order of chosen array is: ");
             SortArray(input);
 
             Console.WriteLine();
@@ -39,19 +41,24 @@ namespace Ex6AManipulateArrays
             int[] inputArrayC = { 3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 9 };
 
             Console.Write("\n\nChoose an array that you would like to work with: ");
-            string arrayChoice = Console.ReadLine();
+            string userChoice = Console.ReadLine();
 
-            if (arrayChoice == "a" || arrayChoice == "A")
+            if (userChoice == "a" || userChoice == "A")
             {
                 doStuff(inputArrayA);
             }
-            else if (arrayChoice == "b" || arrayChoice == "B")
+            else if (userChoice == "b" || userChoice == "B")
             {
                 doStuff(inputArrayB);
             }
-            else if (arrayChoice == "c" || arrayChoice == "C")
+            else if (userChoice == "c" || userChoice == "C")
             {
                 doStuff(inputArrayC);
+            }
+            else
+            {
+                Console.WriteLine("Please check your input.");
+                arrayChoice();
             }
         }
 
@@ -109,9 +116,9 @@ namespace Ex6AManipulateArrays
         {
             try
             {
-                Console.WriteLine("Which way would you like to rotate?:");
+                Console.Write("Which way would you like to rotate?:  ");
                 string entryArray = Console.ReadLine();
-                Console.WriteLine("How many times would you like to rotate?:");
+                Console.Write("How many times would you like to rotate?:  ");
                 int numRotation = int.Parse(Console.ReadLine());
 
                 if (entryArray == "left")
@@ -123,12 +130,15 @@ namespace Ex6AManipulateArrays
                     RotateRightArray(input, numRotation);
                 }
             }
-            catch
+            catch (FormatException)
             {
-                FormatException fe = new FormatException
-                {
-                    
-                };
+                Console.WriteLine("Please check your input.");
+                RotateArrayEntry(input);
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("Please check your input.");
+                RotateArrayEntry(input);
             }
         }
 
@@ -198,7 +208,6 @@ namespace Ex6AManipulateArrays
                     sortedArray[i] = onhand[i];
                 }
             }
-            Console.WriteLine();
             printArray(sortedArray);
             return sortedArray;
         }
