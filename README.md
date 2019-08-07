@@ -1,6 +1,3 @@
-# PlayWithArrays
-Assignment: Exercise 6A
-
 # EX 6A - C# - Manipulating Arrays 
 
 
